@@ -156,6 +156,7 @@ const Dashboard: React.FC = () => {
         }
       }
     },
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     [addToast],
   );
 
@@ -167,6 +168,7 @@ const Dashboard: React.FC = () => {
       setFilter({} as PlayList);
       setLoading(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const interval = useCallback(async () => {
@@ -183,6 +185,7 @@ const Dashboard: React.FC = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   useEffect(() => {
     setInterval(interval, 30000);
     // eslint-disable-next-line react-hooks/exhaustive-deps

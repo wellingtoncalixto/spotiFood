@@ -8,7 +8,6 @@ import { useToast } from '../../hooks/toast';
 const Header: React.FC = () => {
   const { saveToken, token } = useAuth();
   const { addToast } = useToast();
-
   function getHashParams() {
 
     const hashParams: any = {};
@@ -24,7 +23,7 @@ const Header: React.FC = () => {
     const { access_token, refresh_token } = getHashParams();
     if(access_token && refresh_token) {
       await saveToken(access_token, refresh_token);
-    }  else {
+    } else if(token === undefined) {
       addToast({
         type: 'info',
         title: 'Seja bem vindo',
