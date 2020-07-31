@@ -16,7 +16,7 @@ interface Option {
 }
 const SelectBox: React.FC<Props> = ({ name, options, label }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { fieldName, defaultValue, registerField, error } = useField(name);
+  const { fieldName, registerField } = useField(name);
 
   useEffect(() => {
     registerField({

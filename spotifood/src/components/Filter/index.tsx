@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, RefObject } from 'react';
+import React, { useEffect, useState, RefObject } from 'react';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { Container } from './styles';

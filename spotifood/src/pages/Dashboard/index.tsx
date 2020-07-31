@@ -7,7 +7,6 @@ import {
   createMuiTheme,
   ThemeProvider,
 } from '@material-ui/core';
-import api from '../../services/api';
 import Header from '../../components/Header';
 import Card from '../../components/Card';
 import Filter from '../../components/Filter';
@@ -51,6 +50,7 @@ const Dashboard: React.FC = () => {
   const { addToast } = useToast();
   const formRef = useRef<FormHandles & HTMLFontElement>(null);
   const { refresh_token, token } = useAuth();
+  console.log(token);
   async function getPlayLists() {
     if (token) {
       try {
@@ -67,19 +67,15 @@ const Dashboard: React.FC = () => {
         });
         setLoading(false);
       }
-    } else {
-      addToast({
-        type: 'info',
-        title: 'Seja bem vindo',
-        description: 'Faça login no spotify para prosseguir',
-      });
-    }
+    } 
   }
 
   useEffect(() => {
-    getPlayLists();
+    if (token) {
+      getPlayLists();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [addToast]);
+  }, [addToast, token]);
 
   const handleSubmit = useCallback(
     async (data: any) => {
@@ -203,7 +199,7 @@ const Dashboard: React.FC = () => {
     <>
       <Header />
       <Container>
-        {!!token && (
+        {token && (
           <>
             <Button type="button" onClick={() => setOpenFilter(!openFilter)}>
               <span>Pesquisar</span>

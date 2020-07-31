@@ -2,8 +2,6 @@ import React, {
   useRef,
   useEffect,
   InputHTMLAttributes,
-  useState,
-  useCallback,
 } from 'react';
 import { useField } from '@unform/core';
 import { TextField, InputLabel } from '@material-ui/core';
@@ -17,7 +15,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 
 const Input: React.FC<Props> = ({ name, type, label, ...rest }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { fieldName, defaultValue, registerField, error } = useField(name);
+  const { fieldName, registerField, error } = useField(name);
 
   useEffect(() => {
     registerField({

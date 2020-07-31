@@ -1,13 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { Container } from './styles';
 import logo from '../../assets/spotiFoodLogo.png';
 import logoSpotify from '../../assets/spotifyLogo.svg';
 import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
 
 const Header: React.FC = () => {
   const { saveToken, token } = useAuth();
+  const { addToast } = useToast();
 
   function getHashParams() {
+
     const hashParams: any = {};
     let e;
     const r = /([^&;=]+)=?([^&;]*)/g;
@@ -17,9 +20,23 @@ const Header: React.FC = () => {
     }
     return hashParams;
   }
-  useEffect(() => {
+  const saveNewToken = useCallback(async () => {
     const { access_token, refresh_token } = getHashParams();
-    saveToken(access_token, refresh_token);
+    if(access_token && refresh_token) {
+      await saveToken(access_token, refresh_token);
+    }  else {
+      addToast({
+        type: 'info',
+        title: 'Seja bem vindo',
+        description: 'Faça login no spotify para prosseguir',
+      });
+    }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    saveNewToken()
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>

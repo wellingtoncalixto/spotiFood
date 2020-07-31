@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useState, useContext } from 'react';
 
 interface AuthContextData {
-  saveToken(token: string, refresh_token: string): Promise<void>;
+  saveToken(token: string, refresh_token: string): void;
   token: string;
   refresh_token: string;
 }
@@ -25,7 +25,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     return {} as AuthState;
   });
 
-  const saveToken = useCallback(async (token, refresh_token) => {
+  const saveToken = useCallback((token, refresh_token) => {
     localStorage.removeItem('@spotifood:token');
     localStorage.removeItem('@spotifood:refresh_token');
     localStorage.setItem('@spotifood:token', token);
