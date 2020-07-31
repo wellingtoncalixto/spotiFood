@@ -14,7 +14,7 @@
 
 ### Descrição do projeto
 
-Esse projeto usa a api publica do spotify para gerar authenticar um usuario e mostrar um uma lista de playlists indicadas para o usuario, podendo tambem filtrar essas playlists atráves do filtro que tem na aplicação.
+Esse projeto usa a api publica do spotify para autenticar um usuario e gerarum uma lista de indicaçãoes de playlists para o usuario, podendo tambem filtrar essas playlists atráves do filtro que tem na aplicação.
 
 
 ### Explicações para conseguir rodar o projeto.
